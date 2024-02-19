@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= Rails.application.credentials.dig(:pg, :host) %>
+  username: <%= Rails.application.credentials.dig(:pg, :username) %>
+  password: <%= Rails.application.credentials.dig(:pg, :password) %>
+  port: <%= Rails.application.credentials.dig(:pg, :port) %>
+
+development:
+  <<: *default
+  database: todo_development
+
+test:
+  <<: *default
+  database: todo_test
+
+production:
+  <<: *default
+  database: todo_production
+  username: todo
+  password: <%= ENV["TODO_DATABASE_PASSWORD"] %>

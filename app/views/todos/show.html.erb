@@ -1,0 +1,33 @@
+<%= turbo_frame_tag :modal do %>
+  <%= render(ModalComponent.new(title: 'View Todo')) do %>
+    <div class="modal-body">
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <th>Title</th>
+            <td><%= @todo.title %></td>
+          </tr>
+          <tr>
+            <th>Description</th>
+            <td><%= @todo.description %></td>
+          </tr>
+          <tr>
+            <th>Completed</th>
+            <td><%= render BadgeStatusComponent.new(todo: @todo) %></td>
+          </tr>
+          <tr>
+            <th>Created at</th>
+            <td><%= @todo.created_at %></td>
+          </tr>
+          <tr>
+            <th>Updated at</th>
+            <td><%= @todo.updated_at %></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  <div class="modal-footer d-flex justify-content-start">
+    <%= button_tag 'Close', class: 'btn btn-danger', data: { bs_dismiss: 'modal' } %>
+  </div>
+  <% end %>
+<% end %>

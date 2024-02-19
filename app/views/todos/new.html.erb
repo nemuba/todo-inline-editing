@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :modal do %>
+  <%= render(ModalComponent.new(title: 'New Todo')) do %>
+    <%= render "form", todo: @todo %>
+  <% end %>
+<% end %>

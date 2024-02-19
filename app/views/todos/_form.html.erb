@@ -1,0 +1,31 @@
+<%= form_with(model: todo) do |form| %>
+<div class="modal-body">    
+  <%= render_error(todo) %>
+
+  <div class="col-md-12">
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title, class: class_error(todo, :title) %>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description, class: class_error(todo, :description) %>
+  </div>
+
+  <div class="col-md-12">
+    <%= form.label :status, style: "display: block" %>
+    
+    <%= form.radio_button :status, "pending" %> Pending
+    <%= form.radio_button :status, "completed" %> Completed
+  </div>
+
+  </div>
+  <div class="modal-footer d-flex justify-content-between">
+    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+      <i class="bi bi-x-square"></i> Close
+    </button>
+    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">
+      <i class="bi bi-save"></i> Save
+    </button>
+  </div>
+<% end %>

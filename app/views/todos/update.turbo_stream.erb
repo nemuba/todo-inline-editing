@@ -1,0 +1,4 @@
+<%= turbo_stream.replace @todo, partial: "todos/todo", locals: { todo: @todo } %>
+<%= render_toast('Updated with success', 'text-bg-primary') %>
+
+

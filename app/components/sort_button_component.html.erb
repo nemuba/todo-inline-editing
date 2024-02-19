@@ -1,0 +1,17 @@
+<div>
+  <% if selected? %>
+    <% if desc? %>
+      <%= button_sort(icon: 'bi-caret-up-fill', direction: 'asc') %>
+      <%= title %>
+      <%= arrow_default(icon: 'bi-caret-down-fill') %>
+    <% else %>
+      <%= arrow_default(icon: 'bi-caret-up-fill') %>
+      <%= title %>
+      <%= button_sort(icon: 'bi-caret-down-fill', direction: 'desc') %>
+    <% end %>
+  <% else %>
+    <%= button_sort(icon: 'bi-caret-up-fill', direction: 'asc') %>
+    <%= title %>
+    <%= button_sort(icon: 'bi-caret-down-fill', direction: 'desc') %>
+  <% end %>
+</div>

@@ -1,0 +1,10 @@
+<tr id="<%= dom_id(todo) %>">
+  <%= render EditFieldComponent.new(todo:, field: :title) %>
+  <%= render EditFieldComponent.new(todo:, field: :description) %>
+  <%= render EditFieldComponent.new(todo:, field: :status) %>
+  <td colspan="3" class="d-flex gap-1 justify-content-center p-3">
+    <%= render LinkShowComponent.new(link: todo, options: { data: { turbo_frame: 'modal' } }) %>
+    <%= render LinkEditComponent.new(link: edit_todo_path(todo), options: { data: { turbo_frame: 'modal' }})%>
+    <%= render LinkDeleteComponent.new(link: todo, options: { data: { turbo_confirm: 'Are you sure?' } }) %>
+  </td>
+</tr>

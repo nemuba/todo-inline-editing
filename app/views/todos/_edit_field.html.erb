@@ -1,0 +1,17 @@
+<td id="<%= dom_id(todo, "edit_#{field}")%>">
+<%= form_with(model: todo, data: { controller: 'edit-inline'}) do |form| %>
+  <% if field != 'status' %>
+    <%= form.text_field field, class: 'form-control', autofocus: true, data: { action: 'focusout->edit-inline#submit' } %>
+  <% else %>
+    <%= form.select field,
+                    Todo.statuses,
+                    { },
+                    {
+                      prompt: true,
+                      autofocus: true,
+                      class: 'form-control',
+                      data: { action: 'focusout->edit-inline#submit change->edit-inline#submit' }
+                    } %>
+  <% end %>
+<% end %>
+</td>
