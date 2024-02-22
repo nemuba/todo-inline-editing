@@ -13,6 +13,9 @@ application.register("hello", HelloController)
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
 
+import OffCanvasController from "./off_canvas_controller"
+application.register("off-canvas", OffCanvasController)
+
 import ToastController from "./toast_controller"
 application.register("toast", ToastController)
 

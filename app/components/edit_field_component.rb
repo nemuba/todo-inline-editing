@@ -24,11 +24,11 @@ class EditFieldComponent < ViewComponent::Base
 
   def button(&block)
     if block_given?
-      button_to edit_field_todo_path(todo, field:), class: 'btn btn-link text-decoration-none' do
+      button_to edit_field_todo_path(id: todo.id, field:), class: 'btn btn-link text-decoration-none' do
         block.call
       end
     else
-      button_to todo.send(field), edit_field_todo_path(todo, field:), class: 'btn btn-link text-decoration-none'
+      button_to todo.send(field), edit_field_todo_path(id: todo.id, field:), class: 'btn btn-link text-decoration-none'
     end
   end
 end

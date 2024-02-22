@@ -64,3 +64,5 @@ group :development do
 end
 
 gem "view_component"
+
+gem "pagy", "~> 7.0"

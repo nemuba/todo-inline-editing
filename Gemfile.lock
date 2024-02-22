@@ -132,6 +132,7 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.16.2-x86_64-linux)
       racc (~> 1.4)
+    pagy (7.0.4)
     pg (1.5.5)
     psych (5.1.2)
       stringio
@@ -227,6 +228,7 @@ DEPENDENCIES
   debug
   jbuilder
   jsbundling-rails
+  pagy (~> 7.0)
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.3)

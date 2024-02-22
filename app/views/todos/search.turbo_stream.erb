@@ -1,0 +1,3 @@
+<%= turbo_stream.update :todos, partial: 'todos/todo', collection: @todos %>
+<%= turbo_stream.update :pagy, partial: 'todos/pagy', locals: { pagy: @pagy } %>
+

@@ -12,7 +12,7 @@
         <% end %>
       </div>
       <div class="flex">
-        <%= link_to new_todo_path, data: { turbo_frame: "modal" }, class: 'btn btn-sm btn-primary mt-3' do %>
+        <%= link_to new_todo_path, data: { turbo_stream: "modal" }, class: 'btn btn-sm btn-primary mt-3' do %>
           <i class="bi bi-plus-square"></i> New Todo
         <% end %>
       </div>
@@ -22,12 +22,16 @@
 
       <table class="table table-hover">
         <thead id="sort_button">
-          <%= render partial: 'table_header', locals: { direction: 'asc', selected: '' } %>
+          <%= render partial: 'table_header', locals: { direction: 'asc', selected: '', page: @pagy.page } %>
         </thead>
         <tbody id="todos">
           <%= render @todos %>
         </tbody>
       </table>
+      <%#= pagy_bootstrap_nav(@pagy, data: { turbo_frame: 'todos' } ) %>
+      <nav id="pagy" aria-label="Page navigation example">
+        <%= render partial: 'pagy', locals: { pagy: @pagy } %>
+      </nav>
     </div>
   </div>
 </div>

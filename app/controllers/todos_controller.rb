@@ -3,7 +3,7 @@ class TodosController < ApplicationController
 
   # GET /todos or /todos.json
   def index
-    @todos = Todo.all.order(title: :asc)
+    @pagy, @todos = pagy(Todo.all)
   end
 
   # GET /todos/1 or /todos/1.json
@@ -25,12 +25,9 @@ class TodosController < ApplicationController
 
     respond_to do |format|
       if @todo.save
-        format.turbo_stream
-        format.html { redirect_to todos_url, notice: "Todo was successfully created." }
-        format.json { render :show, status: :created, location: @todo }
+        format.html { redirect_to todos_url(format: :turbo_stream), notice: "Todo was successfully created." }
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -39,12 +36,9 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.turbo_stream
-        format.html { redirect_to todos_url, notice: "Todo was successfully updated." }
-        format.json { render :show, status: :ok, location: @todo }
+        format.html { redirect_to todos_url(format: :turbo_stream), notice: "Todo was successfully created." }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
+        format.turbo_stream
       end
     end
   end
@@ -54,32 +48,18 @@ class TodosController < ApplicationController
     @todo.destroy!
 
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to todos_url, notice: "Todo was successfully destroyed." }
+      format.html { redirect_to todos_url(format: :turbo_stream), notice: "Todo was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   def sort
-    @todos = Todo.all.order(params[:sort] => params[:direction])
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: [
-          turbo_stream.update(:todos, partial: 'todos/todo', collection: @todos),
-          turbo_stream.update(:sort_button, partial: 'todos/table_header', locals: { direction: params[:direction], selected: params[:sort] })
-        ]
-      end
-    end
+    @pagy, @todos = pagy(Todo.all.order(params[:sort] => params[:direction]), page: params[:page] || 1)
   end
 
   def search
-    @todos = Todo.where('title LIKE ?', "%#{params[:search]}%")
-                 .or(Todo.where('description LIKE ?', "%#{params[:search]}%"))
-
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.update(:todos, partial: 'todos/todo', collection: @todos) }
-    end
+    @pagy, @todos = pagy(Todo.where('title LIKE ?', "%#{params[:search]}%")
+                 .or(Todo.where('description LIKE ?', "%#{params[:search]}%")))
   end
 
   def edit_field

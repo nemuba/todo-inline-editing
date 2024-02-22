@@ -1,12 +1,5 @@
 <%= turbo_stream.update :modal do %>
-  <%= render(OffCanvasComponent.new(title: 'New Todo')) do %>
+  <%= render(OffCanvasComponent.new(title: 'Edit Todo')) do %>
     <%= render "form", todo: @todo %>
   <% end %>
 <% end %>
-
-
-
-
-
-
-
