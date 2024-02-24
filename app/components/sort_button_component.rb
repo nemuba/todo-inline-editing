@@ -22,7 +22,8 @@ class SortButtonComponent < ViewComponent::Base
   end
 
   def button_sort(icon:, direction:)
-    button_to sort_todos_path(sort: column.downcase, direction:, page:), data: { turbo_frame: 'todos' }, class: 'btn btn-xs btn-link' do
+    button_to sort_todos_path(sort: column.downcase, direction:, page:), data: { turbo_frame: 'todos' },
+                                                                         class: 'btn btn-xs btn-link' do
       content_tag(:i, '', class: icon)
     end
   end

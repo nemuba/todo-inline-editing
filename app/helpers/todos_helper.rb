@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module TodosHelper
   def render_error(resource)
     return unless error?(resource)

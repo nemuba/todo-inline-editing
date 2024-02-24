@@ -4,16 +4,14 @@ class ToastComponent < ViewComponent::Base
   attr_reader :message, :type
 
   TYPES = {
-    success: ""
-  }
+    success: ''
+  }.freeze
 
-  def initialize(message:, type: "success")
+  def initialize(message:, type: 'success')
     @message = message
     @type = type
     super
   end
 
-  def class_name
-
-  end
+  def class_name; end
 end

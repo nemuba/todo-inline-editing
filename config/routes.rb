@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   resources :todos do
     post '/sort', to: 'todos#sort', on: :collection
@@ -5,7 +7,7 @@ Rails.application.routes.draw do
     post '/edit_field', to: 'todos#edit_field', on: :member
   end
 
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
-  root "todos#index"
+  root 'todos#index'
 end

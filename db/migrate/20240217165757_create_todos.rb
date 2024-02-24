@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTodos < ActiveRecord::Migration[7.1]
   def change
     create_enum :todo_status, %w[completed pending]

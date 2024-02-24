@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Todo < ApplicationRecord
   enum status: { pending: 'pending', completed: 'completed' }
 
