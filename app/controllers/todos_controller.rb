@@ -42,7 +42,7 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to todos_url(format: :turbo_stream), notice: 'Todo was successfully created.' }
+        format.html { redirect_to todos_url(format: :turbo_stream), notice: 'Todo was successfully updated.' }
       else
         format.turbo_stream
       end
@@ -70,11 +70,7 @@ class TodosController < ApplicationController
 
   def edit_field
     respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.replace("edit_#{params[:field]}_todo_#{@todo.id}",
-                                                  partial: 'todos/edit_field',
-                                                  locals: { todo: @todo, field: params[:field] })
-      end
+      format.turbo_stream
     end
   end
 

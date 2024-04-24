@@ -1,3 +1,6 @@
 <%= turbo_stream.update :todos, partial: 'todos/todo', collection: @todos %>
 <%= turbo_stream.update(:sort_button, partial: 'todos/table_header', locals: { direction: params[:direction], selected: params[:sort], page: @pagy.page }) %>
 <%= turbo_stream.update :pagy, partial: 'todos/pagy', locals: { pagy: @pagy } %>
+<%= turbo_stream.update :toast do %>
+  <%= render ToastComponent.new(message: notice, type: 'success') %>
+<% end %>

@@ -4,7 +4,7 @@ class ToastComponent < ViewComponent::Base
   attr_reader :message, :type
 
   TYPES = {
-    success: ''
+    success: 'bg-success text-white',
   }.freeze
 
   def initialize(message:, type: 'success')
@@ -13,5 +13,7 @@ class ToastComponent < ViewComponent::Base
     super
   end
 
-  def class_name; end
+  def class_name
+    TYPES[type.to_sym]
+  end
 end

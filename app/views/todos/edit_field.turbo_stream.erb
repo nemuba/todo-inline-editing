@@ -1,0 +1,3 @@
+<%= turbo_stream.replace("edit_#{params[:field]}_todo_#{@todo.id}",
+                         partial: 'todos/edit_field',
+                         locals: { todo: @todo, field: params[:field] }) %>
